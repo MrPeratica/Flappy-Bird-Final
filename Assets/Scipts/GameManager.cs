@@ -37,11 +37,11 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        // Hide start images
+      
         if (_tapToStartImage != null) _tapToStartImage.SetActive(false);
         if (_getReadyImage != null) _getReadyImage.SetActive(false);
 
-        // --- NEW: SHOW the score when the game starts ---
+      
         ScoreManager.instance.SetScoreVisible(true);
     }
 
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         _losePanel.SetActive(true);
         Time.timeScale = 0f;
 
-        // --- NEW: HIDE the score when the game is over ---
+        
         ScoreManager.instance.SetScoreVisible(false);
     }
 
