@@ -10,10 +10,10 @@ public class GameManager : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private GameObject _losePanel;
     
-    // 1. We keep your original Tap image (the hand tutorial)
+    
     [SerializeField] private GameObject _tapToStartImage; 
     
-    // 2. We add the NEW Get Ready image (the text)
+   
     [SerializeField] private GameObject _getReadyImage; 
 
     public bool IsGameOver { get; private set; }
@@ -31,10 +31,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        // Pause game at start
+       
         Time.timeScale = 0f;
 
-        // Show BOTH images
+    
         if (_tapToStartImage != null)
         {
             _tapToStartImage.SetActive(true);
@@ -48,10 +48,10 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        // Unpause game
+       
         Time.timeScale = 1f;
 
-        // Hide BOTH images
+       
         if (_tapToStartImage != null)
         {
             _tapToStartImage.SetActive(false);

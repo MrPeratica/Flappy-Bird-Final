@@ -10,7 +10,7 @@ public class PipeSpawner : MonoBehaviour
 
     private float _timer;
 
-    // Start is called before the first frame update
+  
     void Start()
     {
         PipeSpawn();
@@ -24,7 +24,7 @@ public class PipeSpawner : MonoBehaviour
         Destroy(Pipe, 10);
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         if (_timer > _maxTime)
