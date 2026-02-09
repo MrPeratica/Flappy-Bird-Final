@@ -9,11 +9,7 @@ public class GameManager : MonoBehaviour
 
     [Header("UI References")]
     [SerializeField] private GameObject _losePanel;
-    
-    
     [SerializeField] private GameObject _tapToStartImage; 
-    
-   
     [SerializeField] private GameObject _getReadyImage; 
 
     public bool IsGameOver { get; private set; }
@@ -31,36 +27,22 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-       
         Time.timeScale = 0f;
 
-    
-        if (_tapToStartImage != null)
-        {
-            _tapToStartImage.SetActive(true);
-        }
-        
-        if (_getReadyImage != null)
-        {
-            _getReadyImage.SetActive(true);
-        }
+        if (_tapToStartImage != null) _tapToStartImage.SetActive(true);
+        if (_getReadyImage != null) _getReadyImage.SetActive(true);
     }
 
     public void StartGame()
     {
-       
         Time.timeScale = 1f;
 
-       
-        if (_tapToStartImage != null)
-        {
-            _tapToStartImage.SetActive(false);
-        }
+        // Hide start images
+        if (_tapToStartImage != null) _tapToStartImage.SetActive(false);
+        if (_getReadyImage != null) _getReadyImage.SetActive(false);
 
-        if (_getReadyImage != null)
-        {
-            _getReadyImage.SetActive(false);
-        }
+        // --- NEW: SHOW the score when the game starts ---
+        ScoreManager.instance.SetScoreVisible(true);
     }
 
     public void GameOver()
@@ -68,6 +50,9 @@ public class GameManager : MonoBehaviour
         IsGameOver = true;
         _losePanel.SetActive(true);
         Time.timeScale = 0f;
+
+        // --- NEW: HIDE the score when the game is over ---
+        ScoreManager.instance.SetScoreVisible(false);
     }
 
     public void GameRestart()

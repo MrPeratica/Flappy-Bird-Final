@@ -30,23 +30,35 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-
         _audioSource = GetComponent<AudioSource>();
 
         _currentScore.text = score.ToString();
         _highScore.text = PlayerPrefs.GetInt(HighScoreKey, 0).ToString();
+        
+        // --- NEW: Hide the score text at the very beginning ---
+        if (_currentScore != null)
+        {
+            _currentScore.gameObject.SetActive(false);
+        }
+    }
+
+    // --- NEW: Public function to Show or Hide the score ---
+    public void SetScoreVisible(bool isVisible)
+    {
+        if (_currentScore != null)
+        {
+            _currentScore.gameObject.SetActive(isVisible);
+        }
     }
 
     private void RefreshHighScore()
     {
-    
         if (score > PlayerPrefs.GetInt(HighScoreKey))
         {
             PlayerPrefs.SetInt(HighScoreKey, score);
             _highScore.text = score.ToString();
             PlayerPrefs.Save();
 
-            
             if (!_hasPlayedHighScoreSound && _audioSource != null && _highScoreClip != null)
             {
                 _audioSource.PlayOneShot(_highScoreClip);
@@ -60,12 +72,10 @@ public class ScoreManager : MonoBehaviour
         score++;
         _currentScore.text = score.ToString();
 
-       
         if (_audioSource != null && _scoreClip != null)
         {
             _audioSource.PlayOneShot(_scoreClip);
         }
-     
 
         RefreshHighScore();
     }
